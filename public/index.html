@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>#sorter.</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <h1 id="logo"><a>#sorter.</a></h1>
+            <div class="nav-items">
+                <div class="generator-container">
+                    <input type="range" id="generate-columns-amount" min="10" max="250" step="10">
+                    <p><span>100</span> columns</p>
+                    <a class="generate-randoms button">Generate</a>
+                </div>
+                <p>Select algorithm:</p>
+                <select name="algorithms" id="algorithms">
+                    <option value="bubble-sort">Bubble Sort</option>
+                    <option value="quick-sort">Quick Sort</option>
+                </select>
+                <a class="sort-button button">Sort it!</a>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="container"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <h2 class="logo-small">#sorter.</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, velit!</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"
+        integrity="sha256-3arngJBQR3FTyeRtL3muAGFaGcL8iHsubYOqq48mBLw=" crossorigin="anonymous"></script>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>
