@@ -6,6 +6,10 @@
 # DotEnv
 .env
 
+#Node
+node_modules
+test-deploy-static
+
 # Icon must end with two \r
 Icon
 
