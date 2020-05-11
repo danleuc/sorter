@@ -1,5 +1,6 @@
 node {
     def commitId
+    def app
 
     stage('prepare'){
         checkout scm
@@ -16,7 +17,7 @@ node {
 
     stage('docker build'){
         docker.withRegistry('https://index.docker.io/v1/', 'eab0721e-cf6d-4965-aca6-57b2d3f54774') {
-           def app = docker.build("dnbl/sorter:${commitId}", ".")
+           app = docker.build("dnbl/sorter:${commitId}", ".")
         }
     }
 
