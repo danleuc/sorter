@@ -16,7 +16,7 @@ job('sorter-dsl') {
         dockerBuildAndPublish {
             repositoryName('dnbl/sorter')
             tag('${GIT_REVISION,length=9}')
-            registryCredentials('docker hub')
+            registryCredentials('eab0721e-cf6d-4965-aca6-57b2d3f54774')
             forcePull(false)
             forceTag(false)
             createFingerprints(false)
