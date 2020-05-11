@@ -45,7 +45,7 @@ node {
         if (to != null && !to.isEmpty()) {
             emailext(
                 body: content, 
-                mimeType: 'text/html'
+                mimeType: 'text/html',
                 replyTo: '$DEFAULT_REPLYTO',
                 subject: subject,
                 to: to,
