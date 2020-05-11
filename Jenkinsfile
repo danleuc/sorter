@@ -40,7 +40,7 @@ node {
         currentBuild.result = "FAILURE";
 
         def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}"
-        def content = "${JELLY_SCRIPT, template="html"}"
+        def content = '${JELLY_SCRIPT, template="html"}'
 
         if (to != null && !to.isEmpty()) {
             emailext(
