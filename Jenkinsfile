@@ -9,9 +9,12 @@ node {
     }
 
     stage('test'){
-        nodejs(nodeJSInstallationName: 'NodeJS'){
-        sh 'npm install --only=dev'
-        sh 'npm test'
+        def myTestContainer = docker.image('node:10')
+        myTestContainer.pull()
+        myTestContainer.inside {
+            sh 'npm install --only=dev'
+            sh 'npm test'
+        }
 }
     }
 
