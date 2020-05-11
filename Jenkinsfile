@@ -15,7 +15,6 @@ node {
             sh 'npm install --only=dev'
             sh 'npm test'
         }
-}
     }
 
     stage('docker build'){
