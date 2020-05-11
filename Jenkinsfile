@@ -21,7 +21,6 @@ node {
             myTestContainer.inside {
                 sh 'npm install --only=dev'
                 sh 'npm test'
-                sh 'exit 1' //for testing purpose to check if email is triggered
             }
         }
 
