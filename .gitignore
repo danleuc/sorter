@@ -9,6 +9,7 @@
 #Node
 node_modules
 test-deploy-static
+package-lock.json
 
 # Icon must end with two \r
 Icon
