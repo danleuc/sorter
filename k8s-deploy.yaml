@@ -7,7 +7,7 @@ metadata:
   name: deployment-sorter
   namespace: sorter
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: sorter
