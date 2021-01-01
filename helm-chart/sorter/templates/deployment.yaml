@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sorter
+  name: deployment-sorter
+  namespace: sorter
+spec:
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: sorter
+  template:
+    metadata:
+      labels:
+        app: sorter
+      name: sorter-pod
+    spec:
+      containers:
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{.Values.image.pullPolicy}}
+          name: sorter
+          ports:
+            - containerPort: 3000
