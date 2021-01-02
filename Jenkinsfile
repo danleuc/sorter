@@ -1,6 +1,7 @@
 /* groovylint-disable NestedBlockDepth */
 pipeline {
     environment {
+        tag = "$env.BRANCH_NAME"
         app = ''
         registryCredential = 'dnbl-dockerhub'
     }
@@ -26,17 +27,19 @@ pipeline {
                 steps {
                     script {
                         docker.withRegistry( '', registryCredential ) {
-                            app.push("$BUILD_NUMBER")
+                            app.push(tag)
                             app.push('latest')
                         }
                     }
                 }
             }
-
             stage('deploy app') {
                 steps {
-                    script {
-                        kubernetesDeploy(configs: 'k8s-deploy.yaml', kubeconfigId: 'kubeconfig-minikube')
+                    withCredentials([kubeconfigContent(credentialsId: 'kubeconfig-minikube', variable: 'KUBECONFIG_CONTENT')]) {
+                        sh 'mkdir $HOME/.kube'
+                        sh '''echo "$KUBECONFIG_CONTENT" > ~/.kube/config'''
+                        sh 'kubectl get pods --all-namespaces'
+                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set .Values.image.tag=' + tag
                     }
                 }
             }
