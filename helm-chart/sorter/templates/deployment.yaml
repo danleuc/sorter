@@ -14,8 +14,8 @@ spec:
     metadata:
       labels:
         app: sorter
-    annotations:
-      timestamp: "{{ .Values.timestamp }}"
+      annotations:
+        timestamp: "{{ .Values.timestamp }}"
       name: sorter-pod
     spec:
       containers:
