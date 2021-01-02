@@ -15,7 +15,7 @@ spec:
       labels:
         app: sorter
       annotations:
-        timestamp: "{{ .Values.timestamp }}"
+        buildnumber: {{.Values.buildnumber}}
       name: sorter-pod
     spec:
       containers:
