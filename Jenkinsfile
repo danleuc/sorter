@@ -2,7 +2,7 @@
 pipeline {
     environment {
         tag = "$env.BRANCH_NAME"
-        buildnumber = "$env.BUILD_ID"
+        buildnumber = "BUILD$env.BUILD_ID"
         app = ''
         registryCredential = 'dnbl-dockerhub'
     }
