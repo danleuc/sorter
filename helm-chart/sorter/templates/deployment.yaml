@@ -12,10 +12,10 @@ spec:
       app: sorter
   template:
     metadata:
-      labels:
-        app: sorter
       annotations:
         buildnumber: {{.Values.buildnumber}}
+      labels:
+        app: sorter
       name: sorter-pod
     spec:
       containers:

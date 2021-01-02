@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-buildnumber: ""
+buildnumber: "not-set"
 
 image:
   repository: dnbl/sorter

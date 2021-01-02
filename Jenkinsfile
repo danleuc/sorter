@@ -43,7 +43,7 @@ pipeline {
                         sh 'mkdir $HOME/.kube'
                         sh '''echo "$KUBECONFIG_CONTENT" > ~/.kube/config'''
                         sh 'kubectl get pods --all-namespaces'
-                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set .Values.buildnumber=' + buildnumber + ' --set .Values.image.tag=' + tag
+                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set buildnumber=' + buildnumber + ',image.tag=' + tag
                     }
                 }
             }
