@@ -2,6 +2,7 @@
 pipeline {
     environment {
         tag = "$env.BRANCH_NAME"
+        buildnumber = "$env.BUILD_ID"
         app = ''
         registryCredential = 'dnbl-dockerhub'
     }
@@ -42,7 +43,7 @@ pipeline {
                         sh 'mkdir $HOME/.kube'
                         sh '''echo "$KUBECONFIG_CONTENT" > ~/.kube/config'''
                         sh 'kubectl get pods --all-namespaces'
-                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set -Values.buildnumber=' + ${ env.BUILD_ID } + ' --set .Values.image.tag=' + tag
+                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set .Values.buildnumber=' + buildnumber + ' --set .Values.image.tag=' + tag
                     }
                 }
             }
