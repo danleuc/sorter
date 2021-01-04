@@ -38,7 +38,9 @@ pipeline {
             stage('Set Environment to PROD') {
                 when { tag '*' }
                 steps {
-                    environment = 'prod'
+                    script {
+                        environment = 'prod'
+                    }
                 }
             }
 
