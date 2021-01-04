@@ -7,8 +7,8 @@ metadata:
   namespace: "sorter-{{.Values.environment}}"
 spec:
   ports:
-    - nodePort: {{.Values.service.nodeport}}
-      port: {{.Values.service.port}}
+    #- nodePort: {{.Values.service.nodeport}}
+    - port: {{.Values.service.port}}
       protocol: TCP
       targetPort: {{.Values.service.targetport}}
   selector:
