@@ -52,7 +52,10 @@ pipeline {
                     )]) {
                         sh 'mkdir $HOME/.kube'
                         sh '''echo "$KUBECONFIG_CONTENT" > ~/.kube/config'''
-                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set buildnumber=' + buildnumber + ',image.tag=' + tag + ',environment=' + environment
+                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter-' + environment +
+                        ' --set buildnumber=' + buildnumber +
+                        ',image.tag=' + tag +
+                        ',environment=' + environment
                     }
                 }
             }
