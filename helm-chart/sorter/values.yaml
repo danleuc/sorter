@@ -4,6 +4,7 @@
 
 replicaCount: 1
 buildnumber: "not-set"
+environment: "not-set"
 
 image:
   repository: dnbl/sorter

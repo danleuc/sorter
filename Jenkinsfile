@@ -5,18 +5,19 @@ pipeline {
         buildnumber = "BUILD$env.BUILD_ID"
         app = ''
         registryCredential = 'dnbl-dockerhub'
+        environment = 'dev'
     }
 
     agent any
 
         stages {
-            stage('checkout source') {
+            stage('Checkout source') {
                 steps {
                     git 'https://github.com/danleuc/sorter.git'
                 }
             }
 
-            stage('docker build') {
+            stage('Docker build image') {
                 steps {
                     script {
                         app = docker.build 'dnbl/sorter'
@@ -24,7 +25,7 @@ pipeline {
                 }
             }
 
-            stage('docker push') {
+            stage('Docker push to Dockerhub') {
                 steps {
                     script {
                         docker.withRegistry( '', registryCredential ) {
@@ -34,7 +35,14 @@ pipeline {
                     }
                 }
             }
-            stage('deploy app') {
+            stage('Set Environment to PROD') {
+                when { tag '*' }
+                steps {
+                    environment = 'prod'
+                }
+            }
+
+            stage('Deploy with Helm') {
                 steps {
                     withCredentials([kubeconfigContent(
                         credentialsId: 'kubeconfig-minikube',
@@ -42,8 +50,7 @@ pipeline {
                     )]) {
                         sh 'mkdir $HOME/.kube'
                         sh '''echo "$KUBECONFIG_CONTENT" > ~/.kube/config'''
-                        sh 'kubectl get pods --all-namespaces'
-                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set buildnumber=' + buildnumber + ',image.tag=' + tag
+                        sh 'helm upgrade --install --wait sorter ./helm-chart/sorter --set buildnumber=' + buildnumber + ',image.tag=' + tag + '.environment=' + environment
                     }
                 }
             }
